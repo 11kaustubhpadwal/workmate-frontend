@@ -10,6 +10,7 @@ import {
   Pagination,
 } from "rsuite";
 import JobListing from "./JobListing";
+import NotFound from "./NotFound";
 
 const Home = () => {
   return (
@@ -57,6 +58,11 @@ const Home = () => {
         </Col>
       </Row>
       <Row style={{ margin: "50px 0" }} gutter={28}>
+        <Col xs={24} sm={24} md={24}>
+          <NotFound />
+        </Col>
+      </Row>
+      <Row style={{ margin: "50px 0" }} gutter={28}>
         <Col xs={24} sm={24} md={12}>
           <JobListing />
         </Col>
@@ -91,7 +97,7 @@ const Home = () => {
             last={true}
             pages={30}
             maxButtons={5}
-            activePage={() => {}}
+            activePage={1}
             onSelect={() => {}}
           />
         </Col>
