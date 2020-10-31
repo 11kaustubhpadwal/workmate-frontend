@@ -18,7 +18,7 @@ const Home = () => {
       <Row>
         <Col xs={24} sm={24} md={24}>
           <h4 style={{ padding: "0 0 50px 0", textAlign: "center" }}>
-            Search from 1700 active jobs.
+            Search from over 1500 active jobs.
           </h4>
         </Col>
       </Row>

@@ -4,9 +4,19 @@ import { Grid, Row, Col } from "rsuite";
 const About = () => {
   return (
     <Grid style={{ padding: "25px 20px" }}>
-      <Row>
+      <Row style={{ margin: "0 0 25px 0" }}>
         <Col xs={24} sm={24} md={24}>
-          <p style={{ textAlign: "center" }}>About page.</p>
+          <h3>About</h3>
+        </Col>
+      </Row>
+      <Row style={{ margin: "0 0 25px 0" }}>
+        <Col xs={24} sm={24} md={24}>
+          <p>
+            WorkMate is an open source web application made solely for finding
+            remote jobs.
+          </p>
+          <p>It uses the open source Remotive API to fetch all the jobs.</p>
+          <p>Good luck finding your next remote job!</p>
         </Col>
       </Row>
     </Grid>
