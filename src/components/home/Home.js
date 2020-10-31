@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Grid,
   Row,
@@ -11,8 +11,15 @@ import {
 } from "rsuite";
 import JobListing from "./JobListing";
 import NotFound from "./NotFound";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { getJobs } from "../../actions/jobActions";
 
-const Home = () => {
+const Home = ({ jobs, getJobs }) => {
+  useEffect(() => {
+    getJobs();
+  }, []);
+
   return (
     <Grid style={{ padding: "25px 20px" }}>
       <Row>
@@ -106,4 +113,13 @@ const Home = () => {
   );
 };
 
-export default Home;
+Home.propTypes = {
+  jobs: PropTypes.object.isRequired,
+  getJobs: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  jobs: state.jobs,
+});
+
+export default connect(mapStateToProps, { getJobs })(Home);
