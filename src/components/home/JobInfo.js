@@ -1,38 +1,46 @@
 import React from "react";
 import { Modal, Button, IconButton, Icon } from "rsuite";
 
-const JobInfo = ({ show, close }) => {
+const JobInfo = ({ show, close, job }) => {
   return (
     <Modal show={show} onHide={close} overflow={true}>
       <Modal.Header>
-        <Modal.Title>Job title</Modal.Title>
+        <Modal.Title>{job.title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <p>
           <Icon icon="calendar-o" style={{ margin: "0 10px 0 0" }} />
-          Publication date
+          {job.publication_date}
         </p>
         <p>
           <Icon icon="briefcase" style={{ margin: "0 10px 0 0" }} />
-          Job type
+          {job.job_type === "full_time" && "Full-time"}
+          {job.job_type === "contract" && "Contract"}
+          {job.job_type === "part_time" && "Part-time"}
+          {job.job_type === "other" && "Other"}
+          {job.job_type === "internship" && "Internship"}
+          {job.job_type === "freelance" && "Freelance"}
         </p>
         <p>
           <Icon icon="building" style={{ margin: "0 10px 0 0" }} />
-          Company name
+          {job.company_name}
         </p>
         <p>
           <Icon icon="usd" style={{ margin: "0 10px 0 0" }} />
-          Salary
+          {job.salary === "" ? "N/A" : job.salary}
         </p>
         <p>
           <Icon icon="map-marker" style={{ margin: "0 10px 0 0" }} />
-          Candidate required location
+          {job.candidate_required_location}
         </p>
         <p>
           <Icon icon="info" style={{ margin: "15px 10px 0 0" }} />
           Description
         </p>
-        <div style={{ margin: "10px 0 0 auto" }}></div>
+        <div
+          style={{ margin: "10px 0 0 auto" }}
+          dangerouslySetInnerHTML={{ __html: job.description }}
+        ></div>
       </Modal.Body>
       <Modal.Footer>
         <IconButton

@@ -6,3 +6,4 @@ export const SEARCH_JOB_ERROR = "SEARCH_JOB_ERROR";
 
 // Common actions
 export const SET_LOADING = "SET_LOADING";
+export const CLEAR_ERROR = "CLEAR_ERROR";
