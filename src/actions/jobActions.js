@@ -4,7 +4,7 @@ import {
   GET_JOBS_ERROR,
   SEARCH_JOB_SUCCESS,
   SEARCH_JOB_ERROR,
-  SET_LOADING,
+  GET_JOBS_LOADING,
 } from "../types";
 
 // Get a list of all active jobs
@@ -27,5 +27,5 @@ export const getJobs = () => {
 
 // Set loading
 export const setLoading = () => {
-  return { type: SET_LOADING };
+  return { type: GET_JOBS_LOADING };
 };

@@ -1,7 +1,13 @@
 import React from "react";
 import { Modal, Button, IconButton, Icon } from "rsuite";
+import moment from "moment";
 
 const JobInfo = ({ show, close, job }) => {
+  let date = moment(
+    job.publication_date.toString().slice(0, 10),
+    "YYYYMMDD"
+  ).fromNow();
+
   return (
     <Modal show={show} onHide={close} overflow={true}>
       <Modal.Header>
@@ -10,7 +16,7 @@ const JobInfo = ({ show, close, job }) => {
       <Modal.Body>
         <p>
           <Icon icon="calendar-o" style={{ margin: "0 10px 0 0" }} />
-          {job.publication_date}
+          {date}
         </p>
         <p>
           <Icon icon="briefcase" style={{ margin: "0 10px 0 0" }} />
@@ -33,12 +39,8 @@ const JobInfo = ({ show, close, job }) => {
           <Icon icon="map-marker" style={{ margin: "0 10px 0 0" }} />
           {job.candidate_required_location}
         </p>
-        <p>
-          <Icon icon="info" style={{ margin: "15px 10px 0 0" }} />
-          Description
-        </p>
         <div
-          style={{ margin: "10px 0 0 auto" }}
+          style={{ margin: "20px 0 0 auto" }}
           dangerouslySetInnerHTML={{ __html: job.description }}
         ></div>
       </Modal.Body>

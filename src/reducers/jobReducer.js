@@ -3,35 +3,35 @@ import {
   GET_JOBS_ERROR,
   SEARCH_JOB_SUCCESS,
   SEARCH_JOB_ERROR,
-  SET_LOADING,
+  GET_JOBS_LOADING,
 } from "../types";
 
 const initialState = {
   jobs: [],
   error: null,
-  loading: false,
+  getJobsLoading: false,
 };
 
 /* eslint import/no-anonymous-default-export: [2, {"allowArrowFunction": true}] */
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_LOADING: {
+    case GET_JOBS_LOADING: {
       return {
         ...state,
-        loading: true,
+        getJobsLoading: true,
       };
     }
     case GET_JOBS_SUCCESS: {
       return {
         ...state,
-        loading: false,
+        getJobsLoading: false,
         jobs: action.payload,
       };
     }
     case GET_JOBS_ERROR: {
       return {
         ...state,
-        loading: false,
+        getJobsLoading: false,
         error: action.payload,
       };
     }

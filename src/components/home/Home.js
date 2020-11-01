@@ -43,7 +43,7 @@ const Home = ({ jobs, getJobs }) => {
     setQuery(searchQuery);
   };
 
-  // ********************* Pagination and Display Grid logic *********************
+  // ********************* Pagination and Grid logic *********************
 
   const [activePage, setActivePage] = useState(1);
   const [activePageItems, setActivePageItems] = useState([]);
@@ -114,7 +114,7 @@ const Home = ({ jobs, getJobs }) => {
           />
         </Col>
       </Row>
-      {jobs.loading && (
+      {jobs.getJobsLoading && (
         <Row style={{ margin: "100px" }}>
           <Col xs={24} sm={24} md={24}>
             <Loader
@@ -126,12 +126,12 @@ const Home = ({ jobs, getJobs }) => {
           </Col>
         </Row>
       )}
-      {!jobs.loading && typeof jobs.jobs.jobs !== "undefined" && (
+      {!jobs.getJobsLoading && typeof jobs.jobs.jobs !== "undefined" && (
         <Row>
           <Col xs={24} sm={24} md={24}>
             <p style={{ padding: "30px 0 0 0" }}>
               Total jobs found :
-              {!jobs.loading && typeof jobs.jobs.jobs !== "undefined" && (
+              {!jobs.getJobsLoading && typeof jobs.jobs.jobs !== "undefined" && (
                 <Tag style={{ margin: "0 5px" }} color="green">
                   {jobs.jobs.jobs.length}
                 </Tag>
@@ -140,7 +140,7 @@ const Home = ({ jobs, getJobs }) => {
           </Col>
         </Row>
       )}
-      {!jobs.loading && query === "" && (
+      {!jobs.getJobsLoading && query === "" && (
         <Row>
           <Col xs={24} sm={24} md={24}>
             <Tag style={{ margin: "20px 0" }} color="violet">
@@ -149,7 +149,7 @@ const Home = ({ jobs, getJobs }) => {
           </Col>
         </Row>
       )}
-      {!jobs.loading && query !== "" && (
+      {!jobs.getJobsLoading && query !== "" && (
         <Row style={{ marginTop: "25px" }}>
           <Col xs={24} sm={24} md={24}>
             <p>
@@ -166,14 +166,14 @@ const Home = ({ jobs, getJobs }) => {
           </Col>
         </Row>
       )}
-      {!jobs.loading && jobs.jobs === undefined && (
+      {!jobs.getJobsLoading && jobs.jobs === undefined && (
         <Row style={{ margin: "50px 0" }} gutter={28}>
           <Col xs={24} sm={24} md={24}>
             <NotFound />
           </Col>
         </Row>
       )}
-      {!jobs.loading && activePageItems.length > 0 && (
+      {!jobs.getJobsLoading && activePageItems.length > 0 && (
         <Row style={{ margin: "50px 0" }} gutter={28}>
           <Col xs={24} sm={24} md={12}>
             {activePageItems[0] !== undefined && (
@@ -187,7 +187,7 @@ const Home = ({ jobs, getJobs }) => {
           </Col>
         </Row>
       )}
-      {!jobs.loading && activePageItems.length > 0 && (
+      {!jobs.getJobsLoading && activePageItems.length > 0 && (
         <Row style={{ margin: "50px 0" }} gutter={28}>
           <Col xs={24} sm={24} md={12}>
             {activePageItems[2] !== undefined && (
@@ -201,7 +201,7 @@ const Home = ({ jobs, getJobs }) => {
           </Col>
         </Row>
       )}
-      {!jobs.loading && activePageItems.length > 0 && (
+      {!jobs.getJobsLoading && activePageItems.length > 0 && (
         <Row style={{ margin: "50px 0" }} gutter={28}>
           <Col xs={24} sm={24} md={12}>
             {activePageItems[4] !== undefined && (
