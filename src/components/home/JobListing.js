@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Icon, IconButton, Panel } from "rsuite";
 import JobInfo from "./JobInfo";
+import "../../global.css";
 
 const JobListing = ({ job }) => {
   const [show, setShow] = useState(false);
@@ -25,7 +26,7 @@ const JobListing = ({ job }) => {
         {job.job_type === "freelance" && "Freelance"}
         {job.job_type === "" && "N/A"}
         {job.job_type === "part_time" && (
-          <span style={{ margin: "0 0 0 44.7%" }}>
+          <span style={{ margin: "0 0 0 44.7%" }} className="part-time">
             <IconButton
               icon={
                 <Icon
@@ -48,7 +49,7 @@ const JobListing = ({ job }) => {
           </span>
         )}
         {job.job_type === "contract" && (
-          <span style={{ margin: "0 0 0 45%" }}>
+          <span style={{ margin: "0 0 0 45%" }} className="contract">
             <IconButton
               icon={
                 <Icon
@@ -71,7 +72,7 @@ const JobListing = ({ job }) => {
           </span>
         )}
         {job.job_type === "full_time" && (
-          <span style={{ margin: "0 0 0 45%" }}>
+          <span style={{ margin: "0 0 0 45%" }} className="full-time">
             <IconButton
               icon={
                 <Icon
@@ -94,7 +95,7 @@ const JobListing = ({ job }) => {
           </span>
         )}
         {job.job_type === "internship" && (
-          <span style={{ margin: "0 0 0 43.3%" }}>
+          <span style={{ margin: "0 0 0 43.3%" }} className="internship">
             <IconButton
               icon={
                 <Icon
@@ -117,7 +118,7 @@ const JobListing = ({ job }) => {
           </span>
         )}
         {job.job_type === "other" && (
-          <span style={{ margin: "0 0 0 48.7%" }}>
+          <span style={{ margin: "0 0 0 48.7%" }} className="other">
             <IconButton
               icon={
                 <Icon
@@ -140,7 +141,7 @@ const JobListing = ({ job }) => {
           </span>
         )}
         {job.job_type === "freelance" && (
-          <span style={{ margin: "0 0 0 43.8%" }}>
+          <span style={{ margin: "0 0 0 43.8%" }} className="freelance">
             <IconButton
               icon={
                 <Icon
@@ -163,7 +164,7 @@ const JobListing = ({ job }) => {
           </span>
         )}
         {job.job_type === "" && (
-          <span style={{ margin: "0 0 0 51.5%" }}>
+          <span style={{ margin: "0 0 0 51.5%" }} className="empty">
             <IconButton
               icon={
                 <Icon
@@ -193,6 +194,29 @@ const JobListing = ({ job }) => {
       <p>
         <Icon icon="map-marker" style={{ margin: "0 10px 0 0" }} />
         {job.candidate_required_location}
+      </p>
+      <p className="smaller-mobiles">
+        <span>
+          <IconButton
+            icon={
+              <Icon
+                icon="info"
+                style={{ backgroundColor: "#1c2ca6", color: "white" }}
+              />
+            }
+            style={{ backgroundColor: "#2e3fb0", color: "white" }}
+            onClick={showJobInfo}
+          >
+            View
+          </IconButton>
+          <IconButton
+            icon={<Icon icon="bookmark" />}
+            style={{ margin: "0 0 0 20px" }}
+            color="violet"
+          >
+            Save
+          </IconButton>
+        </span>
       </p>
       <JobInfo show={show} close={closeJobInfo} job={job} />
     </Panel>

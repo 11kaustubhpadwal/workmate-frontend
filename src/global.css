@@ -1,0 +1,92 @@
+@media (min-width: 1200px) {
+  .smaller-mobiles {
+    display: none !important;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  .smaller-mobiles {
+    display: none !important;
+  }
+  .part-time {
+    margin: 0 0 0 30.5% !important;
+  }
+  .contract {
+    margin: 0 0 0 31% !important;
+  }
+  .full-time {
+    margin: 0 0 0 31% !important;
+  }
+  .internship {
+    margin: 0 0 0 28.8% !important;
+  }
+  .freelance {
+    margin: 0 0 0 29.5% !important;
+  }
+  .other {
+    margin: 0 0 0 35.5% !important;
+  }
+  .empty {
+    margin: 0 0 0 39% !important;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 992px) {
+  .smaller-mobiles {
+    display: none !important;
+  }
+  .smaller-devices-spacing {
+    margin: 30px 0 auto 0 !important;
+  }
+  .part-time {
+    margin: 0 0 0 30.5% !important;
+  }
+  .contract {
+    margin: 0 0 0 31% !important;
+  }
+  .full-time {
+    margin: 0 0 0 31% !important;
+  }
+  .internship {
+    margin: 0 0 0 28.8% !important;
+  }
+  .freelance {
+    margin: 0 0 0 29.5% !important;
+  }
+  .other {
+    margin: 0 0 0 35.5% !important;
+  }
+  .empty {
+    margin: 0 0 0 39% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .smaller-mobiles {
+    margin: 20px 0 0 0 !important;
+  }
+  .smaller-devices-spacing {
+    margin: 30px 0 auto 0 !important;
+  }
+  .part-time {
+    display: none !important;
+  }
+  .contract {
+    display: none !important;
+  }
+  .full-time {
+    display: none !important;
+  }
+  .internship {
+    display: none !important;
+  }
+  .freelance {
+    display: none !important;
+  }
+  .other {
+    display: none !important;
+  }
+  .empty {
+    display: none !important;
+  }
+}

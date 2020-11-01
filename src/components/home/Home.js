@@ -100,7 +100,7 @@ const Home = ({ jobs, getJobs, searchJobs }) => {
         </Col>
       </Row>
       <Row>
-        <Col xs={24} sm={24} md={23}>
+        <Col xs={20} sm={22} md={23}>
           <Input
             style={{ width: "100%" }}
             placeholder="e.g. java developer"
@@ -108,7 +108,7 @@ const Home = ({ jobs, getJobs, searchJobs }) => {
             value={searchQuery}
           />
         </Col>
-        <Col xs={24} sm={24} md={1} style={{ textAlign: "right" }}>
+        <Col xs={2} sm={2} md={1} style={{ textAlign: "right" }}>
           {jobs.getJobsLoading && (
             <IconButton
               icon={<Icon icon="search" />}
@@ -223,7 +223,7 @@ const Home = ({ jobs, getJobs, searchJobs }) => {
                 <JobListing job={activePageItems[0]} />
               )}
             </Col>
-            <Col xs={24} sm={24} md={12}>
+            <Col xs={24} sm={24} md={12} className="smaller-devices-spacing">
               {activePageItems[1] !== undefined && (
                 <JobListing job={activePageItems[1]} />
               )}
@@ -241,7 +241,7 @@ const Home = ({ jobs, getJobs, searchJobs }) => {
                 <JobListing job={activePageItems[2]} />
               )}
             </Col>
-            <Col xs={24} sm={24} md={12}>
+            <Col xs={24} sm={24} md={12} className="smaller-devices-spacing">
               {activePageItems[3] !== undefined && (
                 <JobListing job={activePageItems[3]} />
               )}
@@ -259,7 +259,7 @@ const Home = ({ jobs, getJobs, searchJobs }) => {
                 <JobListing job={activePageItems[4]} />
               )}
             </Col>
-            <Col xs={24} sm={24} md={12}>
+            <Col xs={24} sm={24} md={12} className="smaller-devices-spacing">
               {activePageItems[5] !== undefined && (
                 <JobListing job={activePageItems[5]} />
               )}
