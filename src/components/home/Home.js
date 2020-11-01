@@ -109,11 +109,29 @@ const Home = ({ jobs, getJobs, searchJobs }) => {
           />
         </Col>
         <Col xs={24} sm={24} md={1} style={{ textAlign: "right" }}>
-          <IconButton
-            icon={<Icon icon="search" />}
-            color="blue"
-            onClick={handleSearch}
-          />
+          {jobs.getJobsLoading && (
+            <IconButton
+              icon={<Icon icon="search" />}
+              color="blue"
+              onClick={handleSearch}
+              disabled
+            />
+          )}
+          {jobs.searchJobsLoading && (
+            <IconButton
+              icon={<Icon icon="search" />}
+              color="blue"
+              onClick={handleSearch}
+              disabled
+            />
+          )}
+          {!jobs.getJobsLoading && !jobs.searchJobsLoading && (
+            <IconButton
+              icon={<Icon icon="search" />}
+              color="blue"
+              onClick={handleSearch}
+            />
+          )}
         </Col>
       </Row>
       {jobs.getJobsLoading && (
