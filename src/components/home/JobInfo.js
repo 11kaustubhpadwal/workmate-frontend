@@ -26,6 +26,7 @@ const JobInfo = ({ show, close, job }) => {
           {job.job_type === "other" && "Other"}
           {job.job_type === "internship" && "Internship"}
           {job.job_type === "freelance" && "Freelance"}
+          {job.job_type === "" && "N/A"}
         </p>
         <p>
           <Icon icon="building" style={{ margin: "0 10px 0 0" }} />

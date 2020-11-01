@@ -23,6 +23,7 @@ const JobListing = ({ job }) => {
         {job.job_type === "other" && "Other"}
         {job.job_type === "internship" && "Internship"}
         {job.job_type === "freelance" && "Freelance"}
+        {job.job_type === "" && "N/A"}
         {job.job_type === "part_time" && (
           <span style={{ margin: "0 0 0 44.7%" }}>
             <IconButton
@@ -140,6 +141,29 @@ const JobListing = ({ job }) => {
         )}
         {job.job_type === "freelance" && (
           <span style={{ margin: "0 0 0 43.8%" }}>
+            <IconButton
+              icon={
+                <Icon
+                  icon="info"
+                  style={{ backgroundColor: "#1c2ca6", color: "white" }}
+                />
+              }
+              style={{ backgroundColor: "#2e3fb0", color: "white" }}
+              onClick={showJobInfo}
+            >
+              View
+            </IconButton>
+            <IconButton
+              icon={<Icon icon="bookmark" />}
+              style={{ margin: "0 0 0 20px" }}
+              color="violet"
+            >
+              Save
+            </IconButton>
+          </span>
+        )}
+        {job.job_type === "" && (
+          <span style={{ margin: "0 0 0 51.5%" }}>
             <IconButton
               icon={
                 <Icon
