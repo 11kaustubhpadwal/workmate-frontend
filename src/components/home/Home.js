@@ -14,9 +14,9 @@ import JobListing from "./JobListing";
 import NotFound from "./NotFound";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getJobs } from "../../actions/jobActions";
+import { getJobs, searchJobs } from "../../actions/jobActions";
 
-const Home = ({ jobs, getJobs }) => {
+const Home = ({ jobs, getJobs, searchJobs }) => {
   useEffect(() => {
     getJobs();
     //eslint-disable-next-line
@@ -36,11 +36,13 @@ const Home = ({ jobs, getJobs }) => {
   const closeTag = () => {
     setQuery("");
     setSearchQuery("");
+    getJobs();
   };
 
   // search for jobs using the user's input
   const handleSearch = () => {
     setQuery(searchQuery);
+    searchJobs(searchQuery);
   };
 
   // ********************* Pagination and Grid logic *********************
@@ -126,21 +128,37 @@ const Home = ({ jobs, getJobs }) => {
           </Col>
         </Row>
       )}
-      {!jobs.getJobsLoading && typeof jobs.jobs.jobs !== "undefined" && (
-        <Row>
+      {jobs.searchJobsLoading && (
+        <Row style={{ margin: "100px" }}>
           <Col xs={24} sm={24} md={24}>
-            <p style={{ padding: "30px 0 0 0" }}>
-              Total jobs found :
-              {!jobs.getJobsLoading && typeof jobs.jobs.jobs !== "undefined" && (
-                <Tag style={{ margin: "0 5px" }} color="green">
-                  {jobs.jobs.jobs.length}
-                </Tag>
-              )}
-            </p>
+            <Loader
+              size="md"
+              content="Searching for jobs ... Please wait ... "
+              speed="slow"
+              center
+            />
           </Col>
         </Row>
       )}
-      {!jobs.getJobsLoading && query === "" && (
+      {!jobs.getJobsLoading &&
+        !jobs.searchJobsLoading &&
+        typeof jobs.jobs.jobs !== "undefined" && (
+          <Row>
+            <Col xs={24} sm={24} md={24}>
+              <p style={{ padding: "30px 0 0 0" }}>
+                Total jobs found :
+                {!jobs.getJobsLoading &&
+                  !jobs.searchJobsLoading &&
+                  typeof jobs.jobs.jobs !== "undefined" && (
+                    <Tag style={{ margin: "0 5px" }} color="green">
+                      {jobs.jobs.jobs.length}
+                    </Tag>
+                  )}
+              </p>
+            </Col>
+          </Row>
+        )}
+      {!jobs.getJobsLoading && !jobs.searchJobsLoading && query === "" && (
         <Row>
           <Col xs={24} sm={24} md={24}>
             <Tag style={{ margin: "20px 0" }} color="violet">
@@ -149,7 +167,7 @@ const Home = ({ jobs, getJobs }) => {
           </Col>
         </Row>
       )}
-      {!jobs.getJobsLoading && query !== "" && (
+      {!jobs.getJobsLoading && !jobs.searchJobsLoading && query !== "" && (
         <Row style={{ marginTop: "25px" }}>
           <Col xs={24} sm={24} md={24}>
             <p>
@@ -166,71 +184,88 @@ const Home = ({ jobs, getJobs }) => {
           </Col>
         </Row>
       )}
-      {!jobs.getJobsLoading && jobs.jobs === undefined && (
-        <Row style={{ margin: "50px 0" }} gutter={28}>
+      {!jobs.getJobsLoading &&
+        !jobs.searchJobsLoading &&
+        typeof jobs.jobs.jobs !== "undefined" &&
+        jobs.jobs.jobs.length === 0 && (
+          <Row style={{ margin: "50px 0" }} gutter={28}>
+            <Col xs={24} sm={24} md={24}>
+              <NotFound />
+            </Col>
+          </Row>
+        )}
+      {!jobs.getJobsLoading &&
+        !jobs.searchJobsLoading &&
+        typeof jobs.jobs.jobs !== "undefined" &&
+        jobs.jobs.jobs.length > 0 &&
+        activePageItems.length > 0 && (
+          <Row style={{ margin: "50px 0" }} gutter={28}>
+            <Col xs={24} sm={24} md={12}>
+              {activePageItems[0] !== undefined && (
+                <JobListing job={activePageItems[0]} />
+              )}
+            </Col>
+            <Col xs={24} sm={24} md={12}>
+              {activePageItems[1] !== undefined && (
+                <JobListing job={activePageItems[1]} />
+              )}
+            </Col>
+          </Row>
+        )}
+      {!jobs.getJobsLoading &&
+        !jobs.searchJobsLoading &&
+        typeof jobs.jobs.jobs !== "undefined" &&
+        jobs.jobs.jobs.length > 0 &&
+        activePageItems.length > 0 && (
+          <Row style={{ margin: "50px 0" }} gutter={28}>
+            <Col xs={24} sm={24} md={12}>
+              {activePageItems[2] !== undefined && (
+                <JobListing job={activePageItems[2]} />
+              )}
+            </Col>
+            <Col xs={24} sm={24} md={12}>
+              {activePageItems[3] !== undefined && (
+                <JobListing job={activePageItems[3]} />
+              )}
+            </Col>
+          </Row>
+        )}
+      {!jobs.getJobsLoading &&
+        !jobs.searchJobsLoading &&
+        typeof jobs.jobs.jobs !== "undefined" &&
+        jobs.jobs.jobs.length > 0 &&
+        activePageItems.length > 0 && (
+          <Row style={{ margin: "50px 0" }} gutter={28}>
+            <Col xs={24} sm={24} md={12}>
+              {activePageItems[4] !== undefined && (
+                <JobListing job={activePageItems[4]} />
+              )}
+            </Col>
+            <Col xs={24} sm={24} md={12}>
+              {activePageItems[5] !== undefined && (
+                <JobListing job={activePageItems[5]} />
+              )}
+            </Col>
+          </Row>
+        )}
+      {!jobs.getJobsLoading && !jobs.searchJobsLoading && (
+        <Row style={{ margin: "50px 0 0 0", textAlign: "center" }}>
           <Col xs={24} sm={24} md={24}>
-            <NotFound />
+            <Pagination
+              ellipsis={true}
+              boundaryLinks={true}
+              prev={true}
+              next={true}
+              first={true}
+              last={true}
+              pages={numberOfPages}
+              maxButtons={5}
+              activePage={activePage}
+              onSelect={handlePageSelection}
+            />
           </Col>
         </Row>
       )}
-      {!jobs.getJobsLoading && activePageItems.length > 0 && (
-        <Row style={{ margin: "50px 0" }} gutter={28}>
-          <Col xs={24} sm={24} md={12}>
-            {activePageItems[0] !== undefined && (
-              <JobListing job={activePageItems[0]} />
-            )}
-          </Col>
-          <Col xs={24} sm={24} md={12}>
-            {activePageItems[1] !== undefined && (
-              <JobListing job={activePageItems[1]} />
-            )}
-          </Col>
-        </Row>
-      )}
-      {!jobs.getJobsLoading && activePageItems.length > 0 && (
-        <Row style={{ margin: "50px 0" }} gutter={28}>
-          <Col xs={24} sm={24} md={12}>
-            {activePageItems[2] !== undefined && (
-              <JobListing job={activePageItems[2]} />
-            )}
-          </Col>
-          <Col xs={24} sm={24} md={12}>
-            {activePageItems[3] !== undefined && (
-              <JobListing job={activePageItems[3]} />
-            )}
-          </Col>
-        </Row>
-      )}
-      {!jobs.getJobsLoading && activePageItems.length > 0 && (
-        <Row style={{ margin: "50px 0" }} gutter={28}>
-          <Col xs={24} sm={24} md={12}>
-            {activePageItems[4] !== undefined && (
-              <JobListing job={activePageItems[4]} />
-            )}
-          </Col>
-          <Col xs={24} sm={24} md={12}>
-            {activePageItems[5] !== undefined && (
-              <JobListing job={activePageItems[5]} />
-            )}
-          </Col>
-        </Row>
-      )}
-      <Row style={{ margin: "50px 0 0 0", textAlign: "center" }}>
-        <Col xs={24} sm={24} md={24}>
-          <Pagination
-            ellipsis={true}
-            boundaryLinks={true}
-            prev={true}
-            next={true}
-            first={true}
-            last={true}
-            pages={numberOfPages}
-            maxButtons={5}
-            activePage={activePage}
-            onSelect={handlePageSelection}
-          />
-        </Col>
-      </Row>
     </Grid>
   );
 };
@@ -238,10 +273,11 @@ const Home = ({ jobs, getJobs }) => {
 Home.propTypes = {
   jobs: PropTypes.object.isRequired,
   getJobs: PropTypes.func.isRequired,
+  searchJobs: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   jobs: state.jobs,
 });
 
-export default connect(mapStateToProps, { getJobs })(Home);
+export default connect(mapStateToProps, { getJobs, searchJobs })(Home);
