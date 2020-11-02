@@ -9,8 +9,11 @@ import "rsuite/dist/styles/rsuite-default.css";
 import { Container, Header, Content, Footer } from "rsuite";
 
 import store from "./store";
+import { initializeFirebase } from "./utils/firebaseConfig";
 
 function App() {
+  initializeFirebase();
+
   return (
     <Provider store={store}>
       <Router>
