@@ -163,6 +163,15 @@ const Home = ({ jobs, getJobs, searchJobs }) => {
               content="Searching for jobs ... Please wait ... "
               speed="slow"
               center
+              className="large-screen-loader"
+            />
+            <Loader
+              size="md"
+              content="Searching for jobs ... Please wait ... "
+              speed="slow"
+              center
+              className="small-screen-loader"
+              vertical
             />
           </Col>
         </Row>
