@@ -9,7 +9,12 @@ const JobInfo = ({ show, close, job }) => {
   ).fromNow();
 
   return (
-    <Modal show={show} onHide={close} overflow={true}>
+    <Modal
+      show={show}
+      onHide={close}
+      overflow={true}
+      className="smaller-devices-modal"
+    >
       <Modal.Header>
         <Modal.Title>{job.title}</Modal.Title>
       </Modal.Header>
