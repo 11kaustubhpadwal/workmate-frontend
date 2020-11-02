@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Grid, Row, Col, Button, Divider } from "rsuite";
 import logo from "../../images/work-from-home.png";
 import menu from "../../images/list.png";
+import LoginForm from "../home/LoginForm";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -13,6 +14,16 @@ const Navbar = () => {
     } else if (!open) {
       setOpen(true);
     } else return;
+  };
+
+  const [show, setShow] = useState(false);
+
+  const showLoginForm = () => {
+    setShow(true);
+  };
+
+  const closeLoginForm = () => {
+    setShow(false);
   };
 
   return (
@@ -116,11 +127,14 @@ const Navbar = () => {
         >
           <Link to="#" style={{ textDecoration: "none", color: "black" }}>
             <h5 style={{ padding: "22px 0 22px 0" }}>
-              <Button color="violet">Login</Button>
+              <Button color="violet" onClick={showLoginForm}>
+                Login
+              </Button>
             </h5>
           </Link>
         </Col>
       </Row>
+      <LoginForm show={show} close={closeLoginForm} />
     </Grid>
   );
 };
