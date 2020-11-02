@@ -5,6 +5,9 @@ import logo from "../../images/work-from-home.png";
 import menu from "../../images/list.png";
 import LoginForm from "../home/LoginForm";
 
+const firebase = require("firebase");
+const firebaseui = require("firebaseui");
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
@@ -16,6 +19,7 @@ const Navbar = () => {
     } else return;
   };
 
+
   const [show, setShow] = useState(false);
 
   const showLoginForm = () => {
@@ -24,6 +28,25 @@ const Navbar = () => {
 
   const closeLoginForm = () => {
     setShow(false);
+
+  const handleLogin = () => {
+    const uiConfig = {
+      signInSuccessUrl: "/",
+      signInOptions: [
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+      ],
+    };
+
+    if (firebaseui.auth.AuthUI.getInstance()) {
+      const ui = firebaseui.auth.AuthUI.getInstance();
+      ui.start("#firebaseui-auth-container", uiConfig);
+    } else {
+      const ui = new firebaseui.auth.AuthUI(firebase.auth());
+      ui.start("#firebaseui-auth-container", uiConfig);
+    }
+
   };
 
   return (
@@ -128,6 +151,8 @@ const Navbar = () => {
           <Link to="#" style={{ textDecoration: "none", color: "black" }}>
             <h5 style={{ padding: "22px 0 22px 0" }}>
               <Button color="violet" onClick={showLoginForm}>
+              </Button>
+              <Button color="violet" onClick={handleLogin}>
                 Login
               </Button>
             </h5>
