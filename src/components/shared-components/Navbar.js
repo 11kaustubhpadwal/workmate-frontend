@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Grid, Row, Col, Button, Divider } from "rsuite";
 import logo from "../../images/work-from-home.png";
 import menu from "../../images/list.png";
-import LoginForm from "../home/LoginForm";
 
 const firebase = require("firebase");
 const firebaseui = require("firebaseui");
@@ -18,16 +17,6 @@ const Navbar = () => {
       setOpen(true);
     } else return;
   };
-
-
-  const [show, setShow] = useState(false);
-
-  const showLoginForm = () => {
-    setShow(true);
-  };
-
-  const closeLoginForm = () => {
-    setShow(false);
 
   const handleLogin = () => {
     const uiConfig = {
@@ -46,11 +35,13 @@ const Navbar = () => {
       const ui = new firebaseui.auth.AuthUI(firebase.auth());
       ui.start("#firebaseui-auth-container", uiConfig);
     }
-
   };
 
   return (
     <Grid style={{ padding: "15px 20px 25px 20px" }}>
+      <Row>
+        <Col xs={24} sm={24} md={18} id="firebaseui-auth-container"></Col>
+      </Row>
       <Row>
         <Col xs={21} sm={21} md={2}>
           <Link to="/" style={{ textDecoration: "none", color: "black" }}>
@@ -150,8 +141,6 @@ const Navbar = () => {
         >
           <Link to="#" style={{ textDecoration: "none", color: "black" }}>
             <h5 style={{ padding: "22px 0 22px 0" }}>
-              <Button color="violet" onClick={showLoginForm}>
-              </Button>
               <Button color="violet" onClick={handleLogin}>
                 Login
               </Button>
@@ -159,7 +148,6 @@ const Navbar = () => {
           </Link>
         </Col>
       </Row>
-      <LoginForm show={show} close={closeLoginForm} />
     </Grid>
   );
 };
