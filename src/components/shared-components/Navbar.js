@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import { Grid, Row, Col, Button, Divider } from "rsuite";
 import logo from "../../images/work-from-home.png";
 import menu from "../../images/list.png";
-
-const firebase = require("firebase");
-const firebaseui = require("firebaseui");
+import LoginForm from "../home/LoginForm";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -18,30 +16,23 @@ const Navbar = () => {
     } else return;
   };
 
-  const handleLogin = () => {
-    const uiConfig = {
-      signInSuccessUrl: "/",
-      signInOptions: [
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      ],
-    };
+  const [show, setShow] = useState(false);
 
-    if (firebaseui.auth.AuthUI.getInstance()) {
-      const ui = firebaseui.auth.AuthUI.getInstance();
-      ui.start("#firebaseui-auth-container", uiConfig);
-    } else {
-      const ui = new firebaseui.auth.AuthUI(firebase.auth());
-      ui.start("#firebaseui-auth-container", uiConfig);
-    }
+  const showLoginForm = () => {
+    setShow(true);
+  };
+
+  const closeLoginForm = () => {
+    setShow(false);
+  };
+
+  const handleLogin = () => {
+    showLoginForm();
   };
 
   return (
     <Grid style={{ padding: "15px 20px 25px 20px" }}>
-      <Row>
-        <Col xs={24} sm={24} md={18} id="firebaseui-auth-container"></Col>
-      </Row>
+      <LoginForm show={show} close={closeLoginForm} />
       <Row>
         <Col xs={21} sm={21} md={2}>
           <Link to="/" style={{ textDecoration: "none", color: "black" }}>
