@@ -5,6 +5,8 @@ import logo from "../../images/work-from-home.png";
 import menu from "../../images/list.png";
 import LoginForm from "../home/LoginForm";
 
+const firebase = require("firebase");
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
@@ -28,6 +30,35 @@ const Navbar = () => {
 
   const handleLogin = () => {
     showLoginForm();
+  };
+
+  // check whether the user is logged in or not
+  const [currentUser, setCurrentUser] = useState(null);
+
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      setCurrentUser(user);
+    } else {
+      setCurrentUser(null);
+    }
+  });
+
+  const handleLogout = () => {
+    if (open) {
+      setOpen(false);
+    }
+
+    firebase
+      .auth()
+      .signOut()
+      .then(
+        function () {
+          setCurrentUser(null);
+        },
+        function (error) {
+          console.log(error);
+        }
+      );
   };
 
   return (
@@ -54,17 +85,26 @@ const Navbar = () => {
             onClick={handleMenu}
           ></img>
         </Col>
-        <Col xs={24} sm={24} md={18}>
-          <Link to="/" style={{ textDecoration: "none", color: "black" }}>
-            <h3 style={{ padding: "19px 0 19px 10px" }}>WorkMate</h3>
-          </Link>
-        </Col>
+        {currentUser === null && (
+          <Col xs={24} sm={24} md={18}>
+            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+              <h3 style={{ padding: "19px 0 19px 10px" }}>WorkMate</h3>
+            </Link>
+          </Col>
+        )}
+        {currentUser !== null && (
+          <Col xs={24} sm={24} md={16}>
+            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+              <h3 style={{ padding: "19px 0 19px 10px" }}>WorkMate</h3>
+            </Link>
+          </Col>
+        )}
         {open && (
           <Col xs={24} sm={24} md={18}>
             <Divider />
           </Col>
         )}
-        {open && (
+        {open && currentUser === null && (
           <Col
             xs={12}
             sm={12}
@@ -85,7 +125,67 @@ const Navbar = () => {
             </Link>
           </Col>
         )}
-        {open && (
+        {open && currentUser !== null && (
+          <Col
+            xs={8}
+            sm={8}
+            md={2}
+            mdHidden
+            lgHidden
+            style={{ textAlign: "center" }}
+          >
+            <Link
+              to="/about"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <h5 style={{ padding: "22px 0 22px 0" }}>
+                <Button color="violet" onClick={handleMenu}>
+                  About
+                </Button>
+              </h5>
+            </Link>
+          </Col>
+        )}
+        {open && currentUser !== null && (
+          <Col
+            xs={8}
+            sm={8}
+            md={2}
+            mdHidden
+            lgHidden
+            style={{ textAlign: "center" }}
+          >
+            <Link
+              to="/profile"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <h5 style={{ padding: "22px 0 22px 0" }}>
+                <Button color="violet" onClick={handleMenu}>
+                  Profile
+                </Button>
+              </h5>
+            </Link>
+          </Col>
+        )}
+        {open && currentUser !== null && (
+          <Col
+            xs={8}
+            sm={8}
+            md={2}
+            mdHidden
+            lgHidden
+            style={{ textAlign: "center" }}
+          >
+            <Link to="#" style={{ textDecoration: "none", color: "black" }}>
+              <h5 style={{ padding: "22px 0 22px 0" }}>
+                <Button color="violet" onClick={handleLogout}>
+                  Logout
+                </Button>
+              </h5>
+            </Link>
+          </Col>
+        )}
+        {open && currentUser === null && (
           <Col
             xs={12}
             sm={12}
@@ -122,22 +222,61 @@ const Navbar = () => {
             </h5>
           </Link>
         </Col>
-        <Col
-          xs={24}
-          sm={24}
-          md={2}
-          style={{ textAlign: "right" }}
-          smHidden
-          xsHidden
-        >
-          <Link to="#" style={{ textDecoration: "none", color: "black" }}>
-            <h5 style={{ padding: "22px 0 22px 0" }}>
-              <Button color="violet" onClick={handleLogin}>
-                Login
-              </Button>
-            </h5>
-          </Link>
-        </Col>
+        {currentUser !== null && (
+          <Col
+            xs={24}
+            sm={24}
+            md={2}
+            style={{ textAlign: "right" }}
+            smHidden
+            xsHidden
+          >
+            <Link
+              to="/profile"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <h5 style={{ padding: "22px 0 22px 0" }}>
+                <Button color="violet">Profile</Button>
+              </h5>
+            </Link>
+          </Col>
+        )}
+        {currentUser !== null && (
+          <Col
+            xs={24}
+            sm={24}
+            md={2}
+            style={{ textAlign: "right" }}
+            smHidden
+            xsHidden
+          >
+            <Link to="#" style={{ textDecoration: "none", color: "black" }}>
+              <h5 style={{ padding: "22px 0 22px 0" }}>
+                <Button color="violet" onClick={handleLogout}>
+                  Logout
+                </Button>
+              </h5>
+            </Link>
+          </Col>
+        )}
+        {currentUser === null && (
+          <Col
+            xs={24}
+            sm={24}
+            md={2}
+            style={{ textAlign: "right" }}
+            smHidden
+            xsHidden
+          >
+            <Link to="#" style={{ textDecoration: "none", color: "black" }}>
+              <h5 style={{ padding: "22px 0 22px 0" }}>
+                <Button color="violet" onClick={handleLogin}>
+                  Login
+                </Button>
+              </h5>
+            </Link>
+          </Col>
+        )}
       </Row>
     </Grid>
   );
