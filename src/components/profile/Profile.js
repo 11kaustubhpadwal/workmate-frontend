@@ -1,7 +1,7 @@
 import React from "react";
-import { Grid, Row, Col } from "rsuite";
+import { Grid, Row, Col, Message } from "rsuite";
 
-const Profile = ({ currentUser }) => {
+const Profile = ({ currentUser, savedJobs }) => {
   if (currentUser !== null) {
     return (
       <Grid style={{ padding: "25px 20px" }}>
@@ -20,6 +20,18 @@ const Profile = ({ currentUser }) => {
             <h3>My saved jobs</h3>
           </Col>
         </Row>
+        {savedJobs.length === 0 && (
+          <Row style={{ margin: "25px 0 25px 0" }}>
+            <Col xs={24} sm={24} md={24}>
+              <Message
+                showIcon
+                type="info"
+                title="No saved jobs found."
+                description="The jobs you save while searching will appear here."
+              />
+            </Col>
+          </Row>
+        )}
       </Grid>
     );
   } else {

@@ -41,7 +41,7 @@ function App() {
                 <Home />
               </Route>
               <Route exact path="/profile">
-                <Profile currentUser={currentUser} />
+                <Profile currentUser={currentUser} savedJobs={[]} />
               </Route>
               <Route exact path="/about">
                 <About />

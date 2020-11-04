@@ -9,6 +9,7 @@ import {
   Tag,
   Pagination,
   Loader,
+  Message,
 } from "rsuite";
 import JobListing from "./JobListing";
 import NotFound from "./NotFound";
@@ -203,6 +204,21 @@ const Home = ({ jobs, getJobs, searchJobs }) => {
           </Col>
         </Row>
       )}
+      {!jobs.getJobsLoading &&
+        !jobs.searchJobsLoading &&
+        query === "" &&
+        jobs.error !== null && (
+          <Row>
+            <Col xs={24} sm={24} md={24}>
+              <Message
+                showIcon
+                type="error"
+                title="Error"
+                description="An error occurred while getting all the jobs Please refresh the page."
+              />
+            </Col>
+          </Row>
+        )}
       {!jobs.getJobsLoading && !jobs.searchJobsLoading && query !== "" && (
         <Row style={{ marginTop: "25px" }}>
           <Col xs={24} sm={24} md={24}>
