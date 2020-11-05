@@ -28,7 +28,7 @@ export const getSavedJobs = (email) => {
 
       dispatch({ type: GET_SAVED_JOBS_SUCCESS, payload: response.data });
     } catch (error) {
-      dispatch({ type: GET_SAVED_JOBS_ERROR, payload: error });
+      dispatch({ type: GET_SAVED_JOBS_ERROR, payload: error.response.data });
     }
   };
 };
@@ -47,13 +47,13 @@ export const registerUser = (email) => {
 
       dispatch({ type: REGISTER_USER_SUCCESS, payload: response.data });
     } catch (error) {
-      dispatch({ type: REGISTER_USER_ERROR, payload: error });
+      dispatch({ type: REGISTER_USER_ERROR, payload: error.response.data });
     }
   };
 };
 
 // Save job
-export const saveJob = (email, jobToSave) => {
+export const saveJob = (data, setJobID, errorMsg, successMsg) => {
   return async (dispatch) => {
     dispatch(setLoadingSaveJob());
 
@@ -61,12 +61,23 @@ export const saveJob = (email, jobToSave) => {
       const response = await axios({
         method: "patch",
         url: "https://workmate-api.herokuapp.com/api/save-job",
-        data: { email, jobToSave },
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: data,
       });
 
       dispatch({ type: SAVE_JOB_SUCCESS, payload: response.data });
+
+      setJobID(0);
+
+      successMsg();
     } catch (error) {
-      dispatch({ type: SAVE_JOB_ERROR, payload: error });
+      dispatch({ type: SAVE_JOB_ERROR, payload: error.response.data });
+
+      setJobID(0);
+
+      errorMsg();
     }
   };
 };
@@ -85,7 +96,7 @@ export const unsaveJob = (email, jobToUnsave) => {
 
       dispatch({ type: UNSAVE_JOB_SUCCESS, payload: response.data });
     } catch (error) {
-      dispatch({ type: UNSAVE_JOB_ERROR, payload: error });
+      dispatch({ type: UNSAVE_JOB_ERROR, payload: error.response.data });
     }
   };
 };

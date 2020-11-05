@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import { Icon, IconButton, Panel } from "rsuite";
+import { Icon, IconButton, Panel, Alert } from "rsuite";
 import JobInfo from "./JobInfo";
 import "../../global.css";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { saveJob } from "../../actions/userActions";
 
-const JobListing = ({ job }) => {
+const JobListing = ({ job, currentUser, saveJob, user }) => {
   const [show, setShow] = useState(false);
+  const [jobID, setJobID] = useState(0);
 
   const showJobInfo = () => {
     setShow(true);
@@ -12,6 +16,25 @@ const JobListing = ({ job }) => {
 
   const closeJobInfo = () => {
     setShow(false);
+  };
+
+  const handleSaveJob = () => {
+    if (currentUser === null) {
+      Alert.error("Please login to save the job.", 5000);
+    } else {
+      const errorMsg = () => {
+        Alert.error("Failed to save the job. Please try again.", 5000);
+      };
+
+      const successMsg = () => {
+        Alert.success(user.success.msg, 5000);
+      };
+
+      setJobID(job.id);
+
+      let data = { email: currentUser.email, jobToSave: job };
+      saveJob(data, setJobID, errorMsg, successMsg);
+    }
   };
 
   return (
@@ -43,6 +66,8 @@ const JobListing = ({ job }) => {
               icon={<Icon icon="bookmark" />}
               style={{ margin: "0 0 0 20px" }}
               color="violet"
+              onClick={handleSaveJob}
+              loading={jobID === job.id ? user.saveJobLoading : false}
             >
               Save
             </IconButton>
@@ -66,6 +91,8 @@ const JobListing = ({ job }) => {
               icon={<Icon icon="bookmark" />}
               style={{ margin: "0 0 0 20px" }}
               color="violet"
+              onClick={handleSaveJob}
+              loading={jobID === job.id ? user.saveJobLoading : false}
             >
               Save
             </IconButton>
@@ -89,6 +116,8 @@ const JobListing = ({ job }) => {
               icon={<Icon icon="bookmark" />}
               style={{ margin: "0 0 0 20px" }}
               color="violet"
+              onClick={handleSaveJob}
+              loading={jobID === job.id ? user.saveJobLoading : false}
             >
               Save
             </IconButton>
@@ -112,6 +141,8 @@ const JobListing = ({ job }) => {
               icon={<Icon icon="bookmark" />}
               style={{ margin: "0 0 0 20px" }}
               color="violet"
+              onClick={handleSaveJob}
+              loading={jobID === job.id ? user.saveJobLoading : false}
             >
               Save
             </IconButton>
@@ -135,6 +166,8 @@ const JobListing = ({ job }) => {
               icon={<Icon icon="bookmark" />}
               style={{ margin: "0 0 0 20px" }}
               color="violet"
+              onClick={handleSaveJob}
+              loading={jobID === job.id ? user.saveJobLoading : false}
             >
               Save
             </IconButton>
@@ -158,6 +191,8 @@ const JobListing = ({ job }) => {
               icon={<Icon icon="bookmark" />}
               style={{ margin: "0 0 0 20px" }}
               color="violet"
+              onClick={handleSaveJob}
+              loading={jobID === job.id ? user.saveJobLoading : false}
             >
               Save
             </IconButton>
@@ -181,6 +216,8 @@ const JobListing = ({ job }) => {
               icon={<Icon icon="bookmark" />}
               style={{ margin: "0 0 0 20px" }}
               color="violet"
+              onClick={handleSaveJob}
+              loading={jobID === job.id ? user.saveJobLoading : false}
             >
               Save
             </IconButton>
@@ -213,6 +250,8 @@ const JobListing = ({ job }) => {
             icon={<Icon icon="bookmark" />}
             style={{ margin: "0 0 0 20px" }}
             color="violet"
+            onClick={handleSaveJob}
+            loading={jobID === job.id ? user.saveJobLoading : false}
           >
             Save
           </IconButton>
@@ -223,4 +262,13 @@ const JobListing = ({ job }) => {
   );
 };
 
-export default JobListing;
+JobListing.propTypes = {
+  user: PropTypes.object.isRequired,
+  saveJob: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps, { saveJob })(JobListing);

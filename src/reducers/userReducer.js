@@ -30,6 +30,7 @@ export default (state = initialState, action) => {
         ...state,
         success: null,
         saveJobLoading: true,
+        error: null,
       };
     }
     case SAVE_JOB_SUCCESS: {
@@ -37,6 +38,7 @@ export default (state = initialState, action) => {
         ...state,
         success: action.payload,
         saveJobLoading: false,
+        error: null,
       };
     }
     case SAVE_JOB_ERROR: {
@@ -44,6 +46,7 @@ export default (state = initialState, action) => {
         ...state,
         error: action.payload,
         saveJobLoading: false,
+        success: null,
       };
     }
     case UNSAVE_JOB_LOADING: {
@@ -51,6 +54,7 @@ export default (state = initialState, action) => {
         ...state,
         success: null,
         unsaveJobLoading: true,
+        error: null,
       };
     }
     case UNSAVE_JOB_SUCCESS: {
@@ -58,6 +62,7 @@ export default (state = initialState, action) => {
         ...state,
         success: action.payload,
         unsaveJobLoading: false,
+        error: null,
       };
     }
     case UNSAVE_JOB_ERROR: {
@@ -65,6 +70,7 @@ export default (state = initialState, action) => {
         ...state,
         error: action.payload,
         unsaveJobLoading: false,
+        success: null,
       };
     }
     case GET_SAVED_JOBS_LOADING: {
@@ -72,6 +78,7 @@ export default (state = initialState, action) => {
         ...state,
         success: null,
         getSavedJobsLoading: true,
+        error: null,
       };
     }
     case GET_SAVED_JOBS_SUCCESS: {
@@ -79,6 +86,7 @@ export default (state = initialState, action) => {
         ...state,
         success: action.payload,
         getSavedJobsLoading: false,
+        error: null,
       };
     }
     case GET_SAVED_JOBS_ERROR: {
@@ -86,6 +94,7 @@ export default (state = initialState, action) => {
         ...state,
         error: action.payload,
         getSavedJobsLoading: false,
+        success: null,
       };
     }
     case REGISTER_USER_LOADING: {
@@ -93,6 +102,7 @@ export default (state = initialState, action) => {
         ...state,
         success: null,
         registerUserLoading: true,
+        error: null,
       };
     }
     case REGISTER_USER_SUCCESS: {
@@ -100,6 +110,7 @@ export default (state = initialState, action) => {
         ...state,
         success: action.payload,
         registerUserLoading: false,
+        error: null,
       };
     }
     case REGISTER_USER_ERROR: {
@@ -107,6 +118,7 @@ export default (state = initialState, action) => {
         ...state,
         error: action.payload,
         registerUserLoading: false,
+        success: null,
       };
     }
     default:

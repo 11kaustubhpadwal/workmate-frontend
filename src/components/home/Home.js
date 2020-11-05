@@ -17,7 +17,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getJobs, searchJobs } from "../../actions/jobActions";
 
-const Home = ({ jobs, getJobs, searchJobs }) => {
+const Home = ({ jobs, getJobs, searchJobs, currentUser }) => {
   useEffect(() => {
     getJobs();
     //eslint-disable-next-line
@@ -96,7 +96,7 @@ const Home = ({ jobs, getJobs, searchJobs }) => {
       <Row>
         <Col xs={24} sm={24} md={24}>
           <h4 style={{ padding: "0 0 50px 0", textAlign: "center" }}>
-            Search from over 1500 active jobs.
+            Search from over 1000 active jobs.
           </h4>
         </Col>
       </Row>
@@ -214,7 +214,7 @@ const Home = ({ jobs, getJobs, searchJobs }) => {
                 showIcon
                 type="error"
                 title="Error"
-                description="An error occurred while getting all the jobs Please refresh the page."
+                description="An error occurred while getting all the jobs. Please refresh the page."
               />
             </Col>
           </Row>
@@ -254,12 +254,18 @@ const Home = ({ jobs, getJobs, searchJobs }) => {
           <Row style={{ margin: "50px 0" }} gutter={28}>
             <Col xs={24} sm={24} md={12}>
               {activePageItems[0] !== undefined && (
-                <JobListing job={activePageItems[0]} />
+                <JobListing
+                  job={activePageItems[0]}
+                  currentUser={currentUser}
+                />
               )}
             </Col>
             <Col xs={24} sm={24} md={12} className="smaller-devices-spacing">
               {activePageItems[1] !== undefined && (
-                <JobListing job={activePageItems[1]} />
+                <JobListing
+                  job={activePageItems[1]}
+                  currentUser={currentUser}
+                />
               )}
             </Col>
           </Row>
@@ -272,12 +278,18 @@ const Home = ({ jobs, getJobs, searchJobs }) => {
           <Row style={{ margin: "50px 0" }} gutter={28}>
             <Col xs={24} sm={24} md={12}>
               {activePageItems[2] !== undefined && (
-                <JobListing job={activePageItems[2]} />
+                <JobListing
+                  job={activePageItems[2]}
+                  currentUser={currentUser}
+                />
               )}
             </Col>
             <Col xs={24} sm={24} md={12} className="smaller-devices-spacing">
               {activePageItems[3] !== undefined && (
-                <JobListing job={activePageItems[3]} />
+                <JobListing
+                  job={activePageItems[3]}
+                  currentUser={currentUser}
+                />
               )}
             </Col>
           </Row>
@@ -290,12 +302,18 @@ const Home = ({ jobs, getJobs, searchJobs }) => {
           <Row style={{ margin: "50px 0" }} gutter={28}>
             <Col xs={24} sm={24} md={12}>
               {activePageItems[4] !== undefined && (
-                <JobListing job={activePageItems[4]} />
+                <JobListing
+                  job={activePageItems[4]}
+                  currentUser={currentUser}
+                />
               )}
             </Col>
             <Col xs={24} sm={24} md={12} className="smaller-devices-spacing">
               {activePageItems[5] !== undefined && (
-                <JobListing job={activePageItems[5]} />
+                <JobListing
+                  job={activePageItems[5]}
+                  currentUser={currentUser}
+                />
               )}
             </Col>
           </Row>

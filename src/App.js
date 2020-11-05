@@ -38,7 +38,7 @@ function App() {
           <Content>
             <Switch>
               <Route exact path="/">
-                <Home />
+                <Home currentUser={currentUser} />
               </Route>
               <Route exact path="/profile">
                 <Profile currentUser={currentUser} savedJobs={[]} />
