@@ -1,15 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Grid, Row, Col, Message, Loader } from "rsuite";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { registerUser } from "../../actions/userActions";
 
-const Profile = ({ currentUser, savedJobs, registerUser, user }) => {
-  useEffect(() => {
-    registerUser(currentUser.email);
-    // eslint-disable-next-line
-  }, []);
-
+const Profile = ({ currentUser, savedJobs, user }) => {
   if (currentUser !== null) {
     return (
       <Grid style={{ padding: "25px 20px" }}>
@@ -71,11 +65,10 @@ const Profile = ({ currentUser, savedJobs, registerUser, user }) => {
 
 Profile.propTypes = {
   user: PropTypes.object.isRequired,
-  registerUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   user: state.user,
 });
 
-export default connect(mapStateToProps, { registerUser })(Profile);
+export default connect(mapStateToProps)(Profile);

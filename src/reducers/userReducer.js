@@ -11,6 +11,7 @@ import {
   REGISTER_USER_ERROR,
   REGISTER_USER_LOADING,
   REGISTER_USER_SUCCESS,
+  CLEAR_STATE,
 } from "../types";
 
 const initialState = {
@@ -25,6 +26,13 @@ const initialState = {
 /* eslint import/no-anonymous-default-export: [2, {"allowArrowFunction": true}] */
 export default (state = initialState, action) => {
   switch (action.type) {
+    case CLEAR_STATE: {
+      return {
+        ...state,
+        success: null,
+        error: null,
+      };
+    }
     case SAVE_JOB_LOADING: {
       return {
         ...state,

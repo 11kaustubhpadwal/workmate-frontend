@@ -8,7 +8,8 @@ import { saveJob } from "../../actions/userActions";
 
 const JobListing = ({ job, currentUser, saveJob, user }) => {
   const [show, setShow] = useState(false);
-  const [jobID, setJobID] = useState(0);
+
+  const [selectedJob, setSelectedJob] = useState(0);
 
   const showJobInfo = () => {
     setShow(true);
@@ -24,16 +25,18 @@ const JobListing = ({ job, currentUser, saveJob, user }) => {
     } else {
       const errorMsg = () => {
         Alert.error("Failed to save the job. Please try again.", 5000);
+        setSelectedJob(0);
       };
 
       const successMsg = () => {
-        Alert.success(user.success.msg, 5000);
+        Alert.success("Job has been saved successfully.", 5000);
+        setSelectedJob(0);
       };
 
-      setJobID(job.id);
+      setSelectedJob(job.id);
 
       let data = { email: currentUser.email, jobToSave: job };
-      saveJob(data, setJobID, errorMsg, successMsg);
+      saveJob(data, errorMsg, successMsg);
     }
   };
 
@@ -67,7 +70,7 @@ const JobListing = ({ job, currentUser, saveJob, user }) => {
               style={{ margin: "0 0 0 20px" }}
               color="violet"
               onClick={handleSaveJob}
-              loading={jobID === job.id ? user.saveJobLoading : false}
+              loading={selectedJob === job.id ? user.saveJobLoading : false}
             >
               Save
             </IconButton>
@@ -92,7 +95,7 @@ const JobListing = ({ job, currentUser, saveJob, user }) => {
               style={{ margin: "0 0 0 20px" }}
               color="violet"
               onClick={handleSaveJob}
-              loading={jobID === job.id ? user.saveJobLoading : false}
+              loading={selectedJob === job.id ? user.saveJobLoading : false}
             >
               Save
             </IconButton>
@@ -117,7 +120,7 @@ const JobListing = ({ job, currentUser, saveJob, user }) => {
               style={{ margin: "0 0 0 20px" }}
               color="violet"
               onClick={handleSaveJob}
-              loading={jobID === job.id ? user.saveJobLoading : false}
+              loading={selectedJob === job.id ? user.saveJobLoading : false}
             >
               Save
             </IconButton>
@@ -142,7 +145,7 @@ const JobListing = ({ job, currentUser, saveJob, user }) => {
               style={{ margin: "0 0 0 20px" }}
               color="violet"
               onClick={handleSaveJob}
-              loading={jobID === job.id ? user.saveJobLoading : false}
+              loading={selectedJob === job.id ? user.saveJobLoading : false}
             >
               Save
             </IconButton>
@@ -167,7 +170,7 @@ const JobListing = ({ job, currentUser, saveJob, user }) => {
               style={{ margin: "0 0 0 20px" }}
               color="violet"
               onClick={handleSaveJob}
-              loading={jobID === job.id ? user.saveJobLoading : false}
+              loading={selectedJob === job.id ? user.saveJobLoading : false}
             >
               Save
             </IconButton>
@@ -192,7 +195,7 @@ const JobListing = ({ job, currentUser, saveJob, user }) => {
               style={{ margin: "0 0 0 20px" }}
               color="violet"
               onClick={handleSaveJob}
-              loading={jobID === job.id ? user.saveJobLoading : false}
+              loading={selectedJob === job.id ? user.saveJobLoading : false}
             >
               Save
             </IconButton>
@@ -217,7 +220,7 @@ const JobListing = ({ job, currentUser, saveJob, user }) => {
               style={{ margin: "0 0 0 20px" }}
               color="violet"
               onClick={handleSaveJob}
-              loading={jobID === job.id ? user.saveJobLoading : false}
+              loading={selectedJob === job.id ? user.saveJobLoading : false}
             >
               Save
             </IconButton>
@@ -251,7 +254,7 @@ const JobListing = ({ job, currentUser, saveJob, user }) => {
             style={{ margin: "0 0 0 20px" }}
             color="violet"
             onClick={handleSaveJob}
-            loading={jobID === job.id ? user.saveJobLoading : false}
+            loading={selectedJob === job.id ? user.saveJobLoading : false}
           >
             Save
           </IconButton>

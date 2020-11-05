@@ -16,12 +16,20 @@ import NotFound from "./NotFound";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getJobs, searchJobs } from "../../actions/jobActions";
+import { registerUser } from "../../actions/userActions";
 
-const Home = ({ jobs, getJobs, searchJobs, currentUser }) => {
+const Home = ({ jobs, getJobs, searchJobs, registerUser, currentUser }) => {
   useEffect(() => {
     getJobs();
-    //eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (currentUser !== null) {
+      registerUser(currentUser.email);
+    }
+    // eslint-disable-next-line
+  }, [currentUser]);
 
   // ********************* Search query logic *********************
 
@@ -344,10 +352,13 @@ Home.propTypes = {
   jobs: PropTypes.object.isRequired,
   getJobs: PropTypes.func.isRequired,
   searchJobs: PropTypes.func.isRequired,
+  registerUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   jobs: state.jobs,
 });
 
-export default connect(mapStateToProps, { getJobs, searchJobs })(Home);
+export default connect(mapStateToProps, { getJobs, searchJobs, registerUser })(
+  Home
+);

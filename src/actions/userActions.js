@@ -12,6 +12,7 @@ import {
   REGISTER_USER_ERROR,
   REGISTER_USER_LOADING,
   REGISTER_USER_SUCCESS,
+  CLEAR_STATE,
 } from "../types";
 
 // Get a list of all saved jobs
@@ -53,7 +54,7 @@ export const registerUser = (email) => {
 };
 
 // Save job
-export const saveJob = (data, setJobID, errorMsg, successMsg) => {
+export const saveJob = (data, errorMsg, successMsg) => {
   return async (dispatch) => {
     dispatch(setLoadingSaveJob());
 
@@ -69,13 +70,13 @@ export const saveJob = (data, setJobID, errorMsg, successMsg) => {
 
       dispatch({ type: SAVE_JOB_SUCCESS, payload: response.data });
 
-      setJobID(0);
+      dispatch(clearFeedback());
 
       successMsg();
     } catch (error) {
       dispatch({ type: SAVE_JOB_ERROR, payload: error.response.data });
 
-      setJobID(0);
+      dispatch(clearFeedback());
 
       errorMsg();
     }
@@ -119,4 +120,9 @@ export const setLoadingGetSavedJobs = () => {
 // Set loading for registering a user
 export const setLoadingRegisterUser = () => {
   return { type: REGISTER_USER_LOADING };
+};
+
+// Clear error or success feedback
+export const clearFeedback = () => {
+  return { type: CLEAR_STATE };
 };

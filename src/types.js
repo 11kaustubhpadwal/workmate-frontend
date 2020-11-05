@@ -21,4 +21,4 @@ export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS";
 export const REGISTER_USER_ERROR = "REGISTER_USER_ERROR";
 
 // Common actions
-export const CLEAR_ERROR = "CLEAR_ERROR";
+export const CLEAR_STATE = "CLEAR_STATE";
