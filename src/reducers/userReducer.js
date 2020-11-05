@@ -8,6 +8,9 @@ import {
   GET_SAVED_JOBS_ERROR,
   GET_SAVED_JOBS_LOADING,
   GET_SAVED_JOBS_SUCCESS,
+  REGISTER_USER_ERROR,
+  REGISTER_USER_LOADING,
+  REGISTER_USER_SUCCESS,
 } from "../types";
 
 const initialState = {
@@ -16,6 +19,7 @@ const initialState = {
   saveJobLoading: false,
   unsaveJobLoading: false,
   getSavedJobsLoading: false,
+  registerUserLoading: false,
 };
 
 /* eslint import/no-anonymous-default-export: [2, {"allowArrowFunction": true}] */
@@ -28,6 +32,20 @@ export default (state = initialState, action) => {
         saveJobLoading: true,
       };
     }
+    case SAVE_JOB_SUCCESS: {
+      return {
+        ...state,
+        success: action.payload,
+        saveJobLoading: false,
+      };
+    }
+    case SAVE_JOB_ERROR: {
+      return {
+        ...state,
+        error: action.payload,
+        saveJobLoading: false,
+      };
+    }
     case UNSAVE_JOB_LOADING: {
       return {
         ...state,
@@ -35,11 +53,60 @@ export default (state = initialState, action) => {
         unsaveJobLoading: true,
       };
     }
+    case UNSAVE_JOB_SUCCESS: {
+      return {
+        ...state,
+        success: action.payload,
+        unsaveJobLoading: false,
+      };
+    }
+    case UNSAVE_JOB_ERROR: {
+      return {
+        ...state,
+        error: action.payload,
+        unsaveJobLoading: false,
+      };
+    }
     case GET_SAVED_JOBS_LOADING: {
       return {
         ...state,
         success: null,
         getSavedJobsLoading: true,
+      };
+    }
+    case GET_SAVED_JOBS_SUCCESS: {
+      return {
+        ...state,
+        success: action.payload,
+        getSavedJobsLoading: false,
+      };
+    }
+    case GET_SAVED_JOBS_ERROR: {
+      return {
+        ...state,
+        error: action.payload,
+        getSavedJobsLoading: false,
+      };
+    }
+    case REGISTER_USER_LOADING: {
+      return {
+        ...state,
+        success: null,
+        registerUserLoading: true,
+      };
+    }
+    case REGISTER_USER_SUCCESS: {
+      return {
+        ...state,
+        success: action.payload,
+        registerUserLoading: false,
+      };
+    }
+    case REGISTER_USER_ERROR: {
+      return {
+        ...state,
+        error: action.payload,
+        registerUserLoading: false,
       };
     }
     default:
