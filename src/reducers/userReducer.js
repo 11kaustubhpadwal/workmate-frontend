@@ -5,9 +5,6 @@ import {
   UNSAVE_JOB_ERROR,
   UNSAVE_JOB_LOADING,
   UNSAVE_JOB_SUCCESS,
-  GET_SAVED_JOBS_ERROR,
-  GET_SAVED_JOBS_LOADING,
-  GET_SAVED_JOBS_SUCCESS,
   REGISTER_USER_ERROR,
   REGISTER_USER_LOADING,
   REGISTER_USER_SUCCESS,
@@ -19,7 +16,6 @@ const initialState = {
   error: null,
   saveJobLoading: false,
   unsaveJobLoading: false,
-  getSavedJobsLoading: false,
   registerUserLoading: false,
 };
 
@@ -78,30 +74,6 @@ export default (state = initialState, action) => {
         ...state,
         error: action.payload,
         unsaveJobLoading: false,
-        success: null,
-      };
-    }
-    case GET_SAVED_JOBS_LOADING: {
-      return {
-        ...state,
-        success: null,
-        getSavedJobsLoading: true,
-        error: null,
-      };
-    }
-    case GET_SAVED_JOBS_SUCCESS: {
-      return {
-        ...state,
-        success: action.payload,
-        getSavedJobsLoading: false,
-        error: null,
-      };
-    }
-    case GET_SAVED_JOBS_ERROR: {
-      return {
-        ...state,
-        error: action.payload,
-        getSavedJobsLoading: false,
         success: null,
       };
     }
