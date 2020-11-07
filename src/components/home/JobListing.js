@@ -33,10 +33,15 @@ const JobListing = ({ job, currentUser, saveJob, user }) => {
         setSelectedJob(0);
       };
 
+      const warningMsg = () => {
+        Alert.warning("You have already saved this job!", 5000);
+        setSelectedJob(0);
+      };
+
       setSelectedJob(job.id);
 
       let data = { email: currentUser.email, jobToSave: job };
-      saveJob(data, errorMsg, successMsg);
+      saveJob(data, errorMsg, successMsg, warningMsg);
     }
   };
 

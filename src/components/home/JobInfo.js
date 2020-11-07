@@ -20,8 +20,12 @@ const JobInfo = ({ show, close, job, saveJob, currentUser }) => {
         Alert.success("Job has been saved successfully.", 5000);
       };
 
+      const warningMsg = () => {
+        Alert.warning("You have already saved this job!", 5000);
+      };
+
       let data = { email: currentUser.email, jobToSave: job };
-      saveJob(data, errorMsg, successMsg);
+      saveJob(data, errorMsg, successMsg, warningMsg);
     }
   };
 

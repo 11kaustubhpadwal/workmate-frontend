@@ -35,7 +35,7 @@ export const registerUser = (email) => {
 };
 
 // Save job
-export const saveJob = (data, errorMsg, successMsg) => {
+export const saveJob = (data, errorMsg, successMsg, warningMsg) => {
   return async (dispatch) => {
     dispatch(setLoadingSaveJob());
 
@@ -55,11 +55,19 @@ export const saveJob = (data, errorMsg, successMsg) => {
 
       successMsg();
     } catch (error) {
-      dispatch({ type: SAVE_JOB_ERROR, payload: error.response.data });
+      if (error.response.data.msg === "You have already saved this job!") {
+        dispatch({ type: SAVE_JOB_ERROR, payload: error.response.data });
 
-      dispatch(clearFeedback());
+        dispatch(clearFeedback());
 
-      errorMsg();
+        warningMsg();
+      } else {
+        dispatch({ type: SAVE_JOB_ERROR, payload: error.response.data });
+
+        dispatch(clearFeedback());
+
+        errorMsg();
+      }
     }
   };
 };
