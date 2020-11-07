@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Grid,
   Row,
@@ -8,18 +8,57 @@ import {
   List,
   IconButton,
   Icon,
+  Alert,
 } from "rsuite";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { registerUser } from "../../actions/userActions";
+import { registerUser, unsaveJob } from "../../actions/userActions";
+import JobInfo from "../home/JobInfo";
 
-const Profile = ({ currentUser, user, registerUser }) => {
+const Profile = ({ currentUser, user, registerUser, unsaveJob }) => {
   useEffect(() => {
     if (currentUser !== null) {
       registerUser(currentUser.email);
     }
     // eslint-disable-next-line
   }, [currentUser]);
+
+  const [show, setShow] = useState(false);
+
+  const [selectedJob, setSelectedJob] = useState(0);
+
+  const showJobInfo = (item) => {
+    setSelectedJob(item.id);
+    setShow(true);
+  };
+
+  const closeJobInfo = () => {
+    setShow(false);
+  };
+
+  const handleUnsaveJob = (item) => {
+    if (currentUser === null) {
+      Alert.error("Please login to save the job.", 5000);
+    } else {
+      const errorMsg = () => {
+        Alert.error("Failed to remove the job. Please try again.", 5000);
+        setSelectedJob(0);
+      };
+
+      const successMsg = () => {
+        Alert.success("Job has been removed successfully.", 5000);
+        setSelectedJob(0);
+      };
+
+      setSelectedJob(item.id);
+
+      let data = {
+        email: currentUser.email,
+        jobToUnsave: item,
+      };
+      unsaveJob(data, errorMsg, successMsg);
+    }
+  };
 
   if (currentUser !== null) {
     return (
@@ -157,7 +196,9 @@ const Profile = ({ currentUser, user, registerUser }) => {
                           backgroundColor: "#2e3fb0",
                           color: "white",
                         }}
-                        // onClick={showJobInfo}
+                        onClick={() => {
+                          showJobInfo(item);
+                        }}
                       >
                         View
                       </IconButton>
@@ -166,14 +207,23 @@ const Profile = ({ currentUser, user, registerUser }) => {
                       <IconButton
                         icon={<Icon icon="trash" />}
                         color="red"
-                        // onClick={handleSaveJob}
-                        // loading={selectedJob === job.id ? user.saveJobLoading : false}
+                        onClick={() => {
+                          handleUnsaveJob(item);
+                        }}
+                        loading={
+                          selectedJob === item.id
+                            ? user.unsaveJobLoading
+                            : false
+                        }
                       >
                         Remove
                       </IconButton>
                     </Col>
                   </Row>
                 </Grid>
+                {selectedJob === item.id && (
+                  <JobInfo show={show} close={closeJobInfo} job={item} />
+                )}
               </List.Item>
             ))}
           </List>
@@ -188,10 +238,11 @@ const Profile = ({ currentUser, user, registerUser }) => {
 Profile.propTypes = {
   user: PropTypes.object.isRequired,
   registerUser: PropTypes.func.isRequired,
+  unsaveJob: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   user: state.user,
 });
 
-export default connect(mapStateToProps, { registerUser })(Profile);
+export default connect(mapStateToProps, { registerUser, unsaveJob })(Profile);

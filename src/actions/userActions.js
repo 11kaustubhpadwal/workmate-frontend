@@ -12,7 +12,7 @@ import {
   CLEAR_STATE,
 } from "../types";
 
-// Register user or return existing one
+// Register a new user or return an existing one
 export const registerUser = (email) => {
   return async (dispatch) => {
     dispatch(setLoadingRegisterUser());
@@ -65,7 +65,7 @@ export const saveJob = (data, errorMsg, successMsg) => {
 };
 
 // Unsave job
-export const unsaveJob = (email, jobToUnsave) => {
+export const unsaveJob = (data, errorMsg, successMsg) => {
   return async (dispatch) => {
     dispatch(setLoadingUnsaveJob());
 
@@ -73,12 +73,24 @@ export const unsaveJob = (email, jobToUnsave) => {
       const response = await axios({
         method: "patch",
         url: "https://workmate-api.herokuapp.com/api/unsave-job",
-        data: { email, jobToUnsave },
+        data: data,
       });
 
       dispatch({ type: UNSAVE_JOB_SUCCESS, payload: response.data });
+
+      dispatch(clearFeedback());
+
+      successMsg();
+
+      dispatch(registerUser(data.email));
     } catch (error) {
       dispatch({ type: UNSAVE_JOB_ERROR, payload: error.response.data });
+
+      dispatch(clearFeedback());
+
+      errorMsg();
+
+      dispatch(registerUser(data.email));
     }
   };
 };
