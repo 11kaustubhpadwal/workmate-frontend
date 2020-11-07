@@ -260,7 +260,13 @@ const JobListing = ({ job, currentUser, saveJob, user }) => {
           </IconButton>
         </span>
       </p>
-      <JobInfo show={show} close={closeJobInfo} job={job} />
+      <JobInfo
+        show={show}
+        close={closeJobInfo}
+        job={job}
+        saveJob={saveJob}
+        currentUser={currentUser}
+      />
     </Panel>
   );
 };

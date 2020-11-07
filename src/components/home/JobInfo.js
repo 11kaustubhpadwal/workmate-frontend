@@ -1,12 +1,29 @@
 import React from "react";
-import { Modal, Button, IconButton, Icon } from "rsuite";
+import { Modal, Button, IconButton, Icon, Alert } from "rsuite";
 import moment from "moment";
 
-const JobInfo = ({ show, close, job }) => {
+const JobInfo = ({ show, close, job, saveJob, currentUser }) => {
   let date = moment(
     job.publication_date.toString().slice(0, 10),
     "YYYYMMDD"
   ).fromNow();
+
+  const handleSaveJob = () => {
+    if (currentUser === null) {
+      Alert.error("Please login to save the job.", 5000);
+    } else {
+      const errorMsg = () => {
+        Alert.error("Failed to save the job. Please try again.", 5000);
+      };
+
+      const successMsg = () => {
+        Alert.success("Job has been saved successfully.", 5000);
+      };
+
+      let data = { email: currentUser.email, jobToSave: job };
+      saveJob(data, errorMsg, successMsg);
+    }
+  };
 
   return (
     <Modal
@@ -51,14 +68,16 @@ const JobInfo = ({ show, close, job }) => {
         ></div>
       </Modal.Body>
       <Modal.Footer>
-        <IconButton
-          icon={<Icon icon="bookmark" />}
-          style={{ margin: "0 0 0 20px" }}
-          color="violet"
-          onClick={close}
-        >
-          Save
-        </IconButton>
+        {saveJob !== null && (
+          <IconButton
+            icon={<Icon icon="bookmark" />}
+            style={{ margin: "0 0 0 20px" }}
+            color="violet"
+            onClick={handleSaveJob}
+          >
+            Save
+          </IconButton>
+        )}
         <Button onClick={close} appearance="subtle" style={{ color: "black" }}>
           Close
         </Button>

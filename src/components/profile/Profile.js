@@ -222,7 +222,13 @@ const Profile = ({ currentUser, user, registerUser, unsaveJob }) => {
                   </Row>
                 </Grid>
                 {selectedJob === item.id && (
-                  <JobInfo show={show} close={closeJobInfo} job={item} />
+                  <JobInfo
+                    show={show}
+                    close={closeJobInfo}
+                    job={item}
+                    saveJob={null}
+                    currentUser={currentUser}
+                  />
                 )}
               </List.Item>
             ))}
