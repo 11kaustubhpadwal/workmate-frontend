@@ -1,5 +1,6 @@
 import React from "react";
 import { Message } from "rsuite";
+import "../../global.css";
 
 const NotFound = () => {
   return (

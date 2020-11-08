@@ -10,6 +10,7 @@ import {
   Icon,
   Alert,
 } from "rsuite";
+import "../../global.css";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { registerUser, unsaveJob } from "../../actions/userActions";

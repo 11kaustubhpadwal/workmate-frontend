@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, Row, Col } from "rsuite";
+import "../../global.css";
 
 const About = () => {
   return (

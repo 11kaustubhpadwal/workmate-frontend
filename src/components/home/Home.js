@@ -11,6 +11,7 @@ import {
   Loader,
   Message,
 } from "rsuite";
+import "../../global.css";
 import JobListing from "./JobListing";
 import NotFound from "./NotFound";
 import { connect } from "react-redux";

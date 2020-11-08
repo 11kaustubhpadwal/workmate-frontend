@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Grid, Row, Col, Button, Divider } from "rsuite";
+import "../../global.css";
 import logo from "../../images/work-from-home.png";
 import menu from "../../images/list.png";
 import LoginForm from "../home/LoginForm";

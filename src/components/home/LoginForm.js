@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal } from "rsuite";
+import "../../global.css";
 import "../../../node_modules/firebaseui/dist/firebaseui.css";
 
 const firebase = require("firebase");

@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal, Button, IconButton, Icon, Alert } from "rsuite";
+import "../../global.css";
 import moment from "moment";
 
 const JobInfo = ({ show, close, job, saveJob, currentUser }) => {
