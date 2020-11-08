@@ -36,7 +36,7 @@ const Navbar = () => {
   const [currentUser, setCurrentUser] = useState(null);
 
   firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
+    if (user && user.email !== null) {
       setCurrentUser(user);
     } else {
       setCurrentUser(null);
