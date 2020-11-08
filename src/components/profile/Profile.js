@@ -116,7 +116,7 @@ const Profile = ({ currentUser, user, registerUser, unsaveJob }) => {
             <List.Item>
               <Grid>
                 <Row>
-                  <Col xs={24} sm={24} md={10}>
+                  <Col xs={24} sm={24} md={8} className="smaller-devices-list">
                     <Icon
                       icon="tags"
                       style={{
@@ -125,7 +125,7 @@ const Profile = ({ currentUser, user, registerUser, unsaveJob }) => {
                     />
                     Job title
                   </Col>
-                  <Col xs={24} sm={24} md={4}>
+                  <Col xs={24} sm={24} md={4} className="smaller-devices-list">
                     <Icon
                       icon="building"
                       style={{
@@ -134,7 +134,7 @@ const Profile = ({ currentUser, user, registerUser, unsaveJob }) => {
                     />
                     Company name
                   </Col>
-                  <Col xs={24} sm={24} md={3}>
+                  <Col xs={24} sm={24} md={4} className="smaller-devices-list">
                     <Icon
                       icon="map-marker"
                       style={{
@@ -143,7 +143,7 @@ const Profile = ({ currentUser, user, registerUser, unsaveJob }) => {
                     />
                     Location
                   </Col>
-                  <Col xs={24} sm={24} md={3}>
+                  <Col xs={24} sm={24} md={3} className="smaller-devices-list">
                     <Icon
                       icon="info"
                       style={{
@@ -152,7 +152,7 @@ const Profile = ({ currentUser, user, registerUser, unsaveJob }) => {
                     />
                     View
                   </Col>
-                  <Col xs={24} sm={24} md={3}>
+                  <Col xs={24} sm={24} md={5} className="smaller-devices-list">
                     <Icon
                       icon="trash"
                       style={{
@@ -172,16 +172,36 @@ const Profile = ({ currentUser, user, registerUser, unsaveJob }) => {
               <List.Item key={index} index={index}>
                 <Grid>
                   <Row>
-                    <Col xs={24} sm={24} md={10}>
+                    <Col
+                      xs={24}
+                      sm={24}
+                      md={8}
+                      className="smaller-devices-list"
+                    >
                       {item.title}
                     </Col>
-                    <Col xs={24} sm={24} md={4}>
+                    <Col
+                      xs={24}
+                      sm={24}
+                      md={4}
+                      className="smaller-devices-list"
+                    >
                       {item.company_name}
                     </Col>
-                    <Col xs={24} sm={24} md={3}>
+                    <Col
+                      xs={24}
+                      sm={24}
+                      md={4}
+                      className="smaller-devices-list"
+                    >
                       {item.candidate_required_location}
                     </Col>
-                    <Col xs={24} sm={24} md={3}>
+                    <Col
+                      xs={24}
+                      sm={24}
+                      md={3}
+                      className="smaller-devices-list"
+                    >
                       <IconButton
                         icon={
                           <Icon
@@ -203,7 +223,12 @@ const Profile = ({ currentUser, user, registerUser, unsaveJob }) => {
                         View
                       </IconButton>
                     </Col>
-                    <Col xs={24} sm={24} md={3}>
+                    <Col
+                      xs={24}
+                      sm={24}
+                      md={5}
+                      className="smaller-devices-list"
+                    >
                       <IconButton
                         icon={<Icon icon="trash" />}
                         color="red"

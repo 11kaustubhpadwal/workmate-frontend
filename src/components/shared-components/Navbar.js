@@ -196,7 +196,7 @@ const Navbar = () => {
           >
             <Link to="#" style={{ textDecoration: "none", color: "black" }}>
               <h5 style={{ padding: "22px 0 22px 0" }}>
-                <Button color="violet" onClick={handleMenu}>
+                <Button color="violet" onClick={handleLogin}>
                   Login
                 </Button>
               </h5>

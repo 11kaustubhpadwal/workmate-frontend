@@ -38,6 +38,9 @@
 }
 
 @media (min-width: 480px) and (max-width: 992px) {
+  .smaller-devices-list {
+    margin: 5px 0 5px 0 !important;
+  }
   .smaller-devices-modal {
     width: fit-content !important;
   }
@@ -77,6 +80,9 @@
 }
 
 @media (max-width: 480px) {
+  .smaller-devices-list {
+    margin: 5px 0 5px 0 !important;
+  }
   .smaller-devices-modal {
     width: fit-content !important;
   }

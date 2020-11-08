@@ -13,10 +13,10 @@ const About = () => {
         <Col xs={24} sm={24} md={24}>
           <p>
             WorkMate is an open source web application made solely for finding
-            remote jobs.
+            jobs.
           </p>
           <p>It uses the open source Remotive API to fetch all the jobs.</p>
-          <p>Good luck finding your next remote job!</p>
+          <p>Good luck finding your next job!</p>
         </Col>
       </Row>
     </Grid>
