@@ -7,6 +7,7 @@ import Profile from "./components/profile/Profile";
 import Navbar from "./components/shared-components/Navbar";
 import Credits from "./components/shared-components/Credits";
 import "rsuite/dist/styles/rsuite-default.css";
+import "./global.css";
 import { Container, Header, Content, Footer } from "rsuite";
 
 import store from "./store";

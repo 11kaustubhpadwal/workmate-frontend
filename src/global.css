@@ -1,3 +1,7 @@
+html {
+  font-family: "Ubuntu", sans-serif;
+}
+
 @media (min-width: 1200px) {
   .small-screen-loader {
     display: none !important;
