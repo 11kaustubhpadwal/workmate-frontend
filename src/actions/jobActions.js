@@ -16,7 +16,7 @@ export const getJobs = () => {
     try {
       const response = await axios({
         method: "get",
-        url: "https://cors-anywhere.herokuapp.com/remotive.io/api/remote-jobs",
+        url: "https://remotive.io/api/remote-jobs",
       });
 
       dispatch({ type: GET_JOBS_SUCCESS, payload: response.data });
@@ -34,7 +34,7 @@ export const searchJobs = (userInput) => {
     try {
       const response = await axios({
         method: "get",
-        url: `https://cors-anywhere.herokuapp.com/remotive.io/api/remote-jobs?search=${userInput}`,
+        url: `https://remotive.io/api/remote-jobs?search=${userInput}`,
       });
 
       dispatch({ type: SEARCH_JOB_SUCCESS, payload: response.data });

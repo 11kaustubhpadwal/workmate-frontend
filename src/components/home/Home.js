@@ -98,6 +98,12 @@ const Home = ({ jobs, getJobs, searchJobs, registerUser, currentUser }) => {
     setActivePageItems(
       jobs.jobs.jobs.slice(setStartingIndex(e), setEndingIndex(e))
     );
+
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
