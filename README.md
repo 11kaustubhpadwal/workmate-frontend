@@ -8,7 +8,7 @@ I have created this application as a part of my final year diploma thesis and I 
 
 ### Link
 
-The website has been hosted on Surge.sh and can be found here - http://workmate.surge.sh/
+The website has been hosted on Surge.sh and can be found here - https://work-mate.netlify.app/
 
 ### Screenshots
 
